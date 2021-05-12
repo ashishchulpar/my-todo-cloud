@@ -1,0 +1,55 @@
+version: "3"
+
+services:
+  todo-postgres:
+    image: ashishchulpar/todo-postgres:1.0
+
+  todo-cache-ingestion:
+    build:
+      dockerfile: ../Dockerfile.nodejs.prod
+    image: ashishchulpar/todo-cache-ingestion:1.0
+
+  todo-cache-service:
+    build:
+      dockerfile: ../Dockerfile.nodejs.prod
+    image: ashishchulpar/todo-cache-service:1.0
+
+  todo-search-ingestion:
+    build:
+      context: todo-search-ingestion
+      dockerfile: ../Dockerfile.nodejs.prod
+    image: ashishchulpar/todo-search-ingestion:1.0
+    command: sh /home/node/app/start.sh
+
+  todo-search-service:
+    build:
+      dockerfile: ../Dockerfile.nodejs.prod
+    image: ashishchulpar/todo-search-service:1.0
+    command: sh /home/node/app/start.sh
+
+  todo-storage-ingestion:
+    build:
+      dockerfile: ../Dockerfile.nodejs.prod
+    image: ashishchulpar/todo-storage-ingestion:1.0
+    command: sh /home/node/app/start.sh
+
+  todo-storage-service:
+    build:
+      dockerfile: ../Dockerfile.nodejs.prod
+    image: ashishchulpar/todo-storage-service:1.0
+
+  todo-api-gateway:
+    build:
+      dockerfile: ../Dockerfile.nodejs.prod
+    image: ashishchulpar/todo-api-gateway:1.0
+    command: sh /home/node/app/start.sh
+
+  todo-view:
+    build:
+      dockerfile: Dockerfile.prod
+    image: ashishchulpar/todo-view:1.0
+    ports:
+      - 4201:8080
+
+  todo-proxy:
+    image: todo-proxy:1.0
