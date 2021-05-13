@@ -52,4 +52,4 @@ services:
       - 4201:8080
 
   todo-proxy:
-    image: todo-proxy:1.0
+    image: ashishchulpar/todo-proxy:1.0
