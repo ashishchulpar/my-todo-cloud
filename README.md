@@ -1,3 +1,3 @@
 My todo cloud app
 
-https://travis-ci.com/ashishchulpar/my-todo-cloud.svg?branch=master
+[![Build Status](https://travis-ci.com/ashishchulpar/my-todo-cloud.svg?branch=master)](https://travis-ci.com/ashishchulpar/my-todo-cloud)
