@@ -13,7 +13,10 @@ addons:
 
 # Install any dependencies, update Docker Compose to 1.23.2 so we can use Dockerfile outside build context
 before_install:
-  - ENV CHROME_BIN=/usr/bin/google-chrome
+  - LATEST_CHROMEDRIVER_VERSION=`curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE"`
+  - curl "https://chromedriver.storage.googleapis.com/${LATEST_CHROMEDRIVER_VERSION}/chromedriver_linux64.zip" -O
+  - unzip chromedriver_linux64.zip -d ~/bin
+  - export CHROME_BIN=/usr/bin/google-chrome
   - docker --version
   - docker-compose --version
   - sudo rm /usr/local/bin/docker-compose
